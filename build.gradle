@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'dev.ballgitte'
+version = '1.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'dev.ballgitte'
+            artifactId = 'utils'
+            version = '1.1.0'
+        }
+    }
+    repositories {
+        maven {
+            name = "localRepo"
+            url = uri(System.getProperty("user.home") + "/.m2/repository")
+        }
+    }
+}
