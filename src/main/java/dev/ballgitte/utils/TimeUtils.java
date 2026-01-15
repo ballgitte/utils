@@ -4,13 +4,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
 public final class TimeUtils {
-
-    private TimeUtils() {}
-
-    @PublicApi
-    public static String getTimeFromUnit(Duration duration, ChronoUnit unit) {
-        long totalNanos = duration.toNanos();
-        Object[][] units = {
+    private static final Object[][] units = {
             {ChronoUnit.YEARS, 365L * 24 * 3600 * 1_000_000_000L, "y"},
             {ChronoUnit.MONTHS, (365L * 24 * 3600 / 12) * 1_000_000_000L, "mo"},
             {ChronoUnit.DAYS, 24L * 3600 * 1_000_000_000L, "d"},
@@ -21,16 +15,22 @@ public final class TimeUtils {
             {ChronoUnit.MICROS, 1_000L, "μs"},
             {ChronoUnit.NANOS, 1L, "ns"}
         };
+
+    private TimeUtils() {}
+
+    @PublicApi
+    public static String getTimeFromUnit(Duration duration, ChronoUnit unit) {
+        long remainingNanos = duration.toNanos();
         StringBuilder sb = new StringBuilder();
-        for (Object[] unit2 : units) {
-            ChronoUnit unit3 = (ChronoUnit) unit2[0];
-            long uNanos = (Long) unit2[1];
-            String suffix = (String) unit2[2];
-            long value = totalNanos / uNanos;
-            totalNanos %= uNanos;
-            if (unit3 == unit || value > 0) {
-                sb.append(value).append(suffix);
-                if (unit3 == unit) {
+        for (Object[] unitObject : units) {
+            ChronoUnit unit2 = (ChronoUnit) unitObject[0];
+            long unitNanos = (Long) unitObject[1];
+            String unitSuffix = (String) unitObject[2];
+            long value = remainingNanos / unitNanos;
+            remainingNanos %= unitNanos;
+            if (unit2 == unit || value > 0) {
+                sb.append(value).append(unitSuffix);
+                if (unit2 == unit) {
                     break;
                 }
             }
