@@ -18,6 +18,13 @@ public final class TimeUtils {
 
     private TimeUtils() {}
 
+    /**
+     * Converts a duration to a string representation from the specified unit.
+     * Examples:
+     * - `getTimeFromUnit(Duration.ofHours(24 * 14), ChronoUnit.DAYS)` returns "14d"
+     * - `getTimeFromUnit(Duration.ofHours(24 * 14), ChronoUnit.HOURS)` returns "14d0hr"
+     *      > returns the hour even if it's 0
+     */
     @PublicApi
     public static String getTimeFromUnit(Duration duration, ChronoUnit unit) {
         long remainingNanos = duration.toNanos();

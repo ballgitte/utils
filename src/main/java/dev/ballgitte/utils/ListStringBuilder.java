@@ -6,6 +6,9 @@ public final class ListStringBuilder {
 
     private ListStringBuilder() {}
 
+    /**
+     * Builds a string from a list of strings, separating them with commas and an "and" before the last item.
+     */
     @PublicApi
     public static String build(List<String> listOfStrings) {
         StringBuilder listStringBuilder = new StringBuilder();

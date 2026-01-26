@@ -7,8 +7,8 @@ public final class IdUtils {
     private IdUtils() {}
 
     /**
-     * Gets the type of an ID in IDs like "example_type:1294949", where "example_type" is the type
-     * The delimiter is `:`
+     * Gets the type of an ID in IDs like "example_type:1294949", where "example_type" is the type.
+     * The delimiter is `:`.
      */
     @PublicApi
     public static String getType(String id) {
@@ -20,8 +20,8 @@ public final class IdUtils {
     }
 
     /**
-     * Gets the numeric value of an ID as an integer in IDs like "example_type:1294949", where "1294949" is the ID
-     * The delimiter is `:`
+     * Gets the numeric value of an ID as an integer in IDs like "example_type:1294949", where "1294949" is the ID.
+     * The delimiter is `:`.
      */
     @PublicApi
     public static int getIdInt(String id) {
@@ -37,8 +37,8 @@ public final class IdUtils {
     }
 
     /**
-     * Gets the numeric value of an ID as a long in IDs like "example_type:1215129489668055070", where "1215129489668055070" is the ID
-     * The delimiter is `:`
+     * Gets the numeric value of an ID as a long in IDs like "example_type:1215129489668055070", where "1215129489668055070" is the ID.
+     * The delimiter is `:`.
      */
     @PublicApi
     public static long getIdLong(String id) {
@@ -53,6 +53,9 @@ public final class IdUtils {
         }
     }
 
+    /**
+     * Gets the first available ID from a set of IDs.
+     */
     @PublicApi
     public static int getFirstAvailableId(Set<Integer> ids) {
         for (int i = 1; ; i++) {
