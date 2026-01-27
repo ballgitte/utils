@@ -6,7 +6,7 @@
 
     <groupId>dev.ballgitte</groupId>
     <artifactId>utils</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 
     <name>Utils</name>
     <description>Utils</description>
@@ -92,10 +92,13 @@
                 <configuration>
                     <keyname>ADFF8D6BFBE7818967965B9CD8FA8F30AF953119</keyname>
                     <gpgArguments>
-                        <arg>--pinentry-mode</arg>
-                        <arg>loopback</arg>
+                      <arg>--batch</arg>
+                      <arg>--yes</arg>
+                      <arg>--pinentry-mode</arg>
+                      <arg>loopback</arg>
                     </gpgArguments>
-                </configuration>
+                    <useAgent>true</useAgent>
+                  </configuration>
               <executions>
                 <execution>
                   <id>sign-artifacts</id>
