@@ -1,14 +1,21 @@
 package dev.ballgitte.utils;
 
-import java.util.Set;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
+/**
+ * Utility class for ID-related operations.
+ */
 public final class IdUtils {
 
     private IdUtils() {}
 
     /**
-     * Gets the type of an ID in IDs like "example_type:1294949", where "example_type" is the type.
+     * Gets the type of an ID in IDs like `example_type:1294949`, where `example_type` is the type.
      * The delimiter is `:`.
+     * @param id the ID to get the type of
+     * @return the type of the ID
      */
     @PublicApi
     public static String getType(String id) {
@@ -20,48 +27,59 @@ public final class IdUtils {
     }
 
     /**
-     * Gets the numeric value of an ID as an integer in IDs like "example_type:1294949", where "1294949" is the ID.
+     * Gets the numeric value of an ID in IDs like `example_type:1215129489668055070`, where `1215129489668055070` is the ID.
      * The delimiter is `:`.
+     * @param <T> Number type (Integer, Long, BigInteger, etc.)
+     * @param id the ID to get the numeric value of
+     * @param parser a function to parse the numeric part of the ID into a number
+     * @return the numeric value of the ID
      */
     @PublicApi
-    public static int getIdInt(String id) {
+    public static <T> T getId(String id, Function<String, T> parser) {
         int delimiter = id.indexOf(':');
         if (delimiter == -1 || delimiter == id.length() - 1) {
             throw new IllegalArgumentException("Invalid component ID: " + id);
         }
+        String numericPart = id.substring(delimiter + 1);
         try {
-            return Integer.parseInt(id.substring(delimiter + 1));
-        } catch (NumberFormatException e) {
+            return parser.apply(numericPart);
+        } catch (Exception e) {
             throw new IllegalArgumentException("Invalid numeric ID in component ID: " + id, e);
         }
     }
 
     /**
-     * Gets the numeric value of an ID as a long in IDs like "example_type:1215129489668055070", where "1215129489668055070" is the ID.
-     * The delimiter is `:`.
+     * Gets the first available ID from a collection of numbers.
+     *
+     * @param <T> Number type (Integer, Long, BigInteger, etc.)
+     * @param ids The collection of IDs
+     * @param startingNumber The starting number
+     * @param increment Function to increment the next available ID
+     * @param compare Function to compare two values
+     * @return The first available ID, starting from {@code startingNumber}
      */
-    @PublicApi
-    public static long getIdLong(String id) {
-        int delimiter = id.indexOf(':');
-        if (delimiter == -1 || delimiter == id.length() - 1) {
-            throw new IllegalArgumentException("Invalid component ID: " + id);
+    public static <T> T getFirstAvailableId(
+            Collection<T> ids,
+            T startingNumber,
+            Function<T, T> increment,
+            BiFunction<T, T, Integer> compare
+    ) {
+        if (ids.isEmpty()) {
+            return startingNumber;
         }
-        try {
-            return Long.parseLong(id.substring(delimiter + 1));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid numeric ID in component ID: " + id, e);
-        }
-    }
-
-    /**
-     * Gets the first available ID from a set of IDs.
-     */
-    @PublicApi
-    public static int getFirstAvailableId(Set<Integer> ids) {
-        for (int i = 1; ; i++) {
-            if (!ids.contains(i)) {
-                return i;
+        NavigableSet<T> sortedIds = new TreeSet<>(compare::apply);
+        sortedIds.addAll(ids);
+        T expected = startingNumber;
+        for (T id : sortedIds) {
+            int comparingNumber = compare.apply(id, expected);
+            if (comparingNumber < 0) {
+                continue;
             }
+            if (comparingNumber > 0) {
+                return expected;
+            }
+            expected = increment.apply(expected);
         }
+        return expected;
     }
 }

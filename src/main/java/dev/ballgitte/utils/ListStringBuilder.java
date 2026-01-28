@@ -2,12 +2,17 @@ package dev.ballgitte.utils;
 
 import java.util.List;
 
+/**
+ * Utility class for building strings from lists of strings.
+ */
 public final class ListStringBuilder {
 
     private ListStringBuilder() {}
 
     /**
      * Builds a string from a list of strings, separating them with commas and an "and" before the last item.
+     * @param listOfStrings The list of strings to build from
+     * @return The built string
      */
     @PublicApi
     public static String build(List<String> listOfStrings) {
