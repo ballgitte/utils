@@ -29,9 +29,9 @@ public final class IdUtils {
     /**
      * Gets the numeric value of an ID in IDs like `example_type:1215129489668055070`, where `1215129489668055070` is the ID.
      * The delimiter is `:`.
-     * @param <T> Number type (Integer, Long, BigInteger, etc.)
      * @param id the ID to get the numeric value of
      * @param parser a function to parse the numeric part of the ID into a number
+     * @param <T> number type (Integer, Long, BigInteger, etc.)
      * @return the numeric value of the ID
      */
     @PublicApi
@@ -51,12 +51,12 @@ public final class IdUtils {
     /**
      * Gets the first available ID from a collection of numbers.
      *
-     * @param <T> Number type (Integer, Long, BigInteger, etc.)
-     * @param ids The collection of IDs
-     * @param startingNumber The starting number
-     * @param increment Function to increment the next available ID
-     * @param compare Function to compare two values
-     * @return The first available ID, starting from {@code startingNumber}
+     * @param ids the collection of IDs
+     * @param startingNumber the starting number
+     * @param increment function to increment the next available ID
+     * @param compare function to compare two values
+     * @param <T> number type (Integer, Long, BigInteger, etc.)
+     * @return the first available ID, starting from {@code startingNumber}
      */
     public static <T> T getFirstAvailableId(
             Collection<T> ids,

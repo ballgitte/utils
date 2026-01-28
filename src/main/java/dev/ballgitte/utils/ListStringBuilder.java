@@ -11,8 +11,8 @@ public final class ListStringBuilder {
 
     /**
      * Builds a string from a list of strings, separating them with commas and an "and" before the last item.
-     * @param listOfStrings The list of strings to build from
-     * @return The built string
+     * @param listOfStrings the list of strings to build from
+     * @return the built string
      */
     @PublicApi
     public static String build(List<String> listOfStrings) {

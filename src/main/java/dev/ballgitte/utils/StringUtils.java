@@ -11,8 +11,8 @@ public final class StringUtils {
 
     /**
      * Used for counting display characters (including emojis) properly in a string, considering Unicode grapheme clusters.
-     * @param s The string to count characters in
-     * @return The number of display characters in the string
+     * @param s the string to count characters in
+     * @return the number of display characters in the string
      */
     @PublicApi
     public static int countDisplayChars(String s) {
