@@ -53,32 +53,36 @@ public final class IdUtils {
      *
      * @param ids the collection of IDs.
      * @param startingNumber the starting ID number. Most IDs start at 0 or 1.
-     * @param increment function to increment the next available ID.
-     * @param compare function to compare two values.
+     * @param comparator function to compare two values.
+     * @param incrementer function to increment the next available ID.
      * @param <T> number type (Integer, Long, BigInteger, etc.).
      * @return the first available ID, starting from {@code startingNumber}.
      */
+    @PublicApi
     public static <T> T getFirstAvailableId(
-            Collection<T> ids,
-            T startingNumber,
-            Function<T, T> increment,
-            BiFunction<T, T, Integer> compare
+        Collection<T> ids,
+        T startingNumber,
+        Comparator<? super T> comparator,
+        Function<T, T> incrementer
     ) {
-        if (ids.isEmpty()) {
+        if (ids == null || ids.isEmpty()) {
             return startingNumber;
         }
-        NavigableSet<T> sortedIds = new TreeSet<>(compare::apply);
-        sortedIds.addAll(ids);
+        PriorityQueue<T> queue = new PriorityQueue<>(comparator);
+        for (T id : ids) {
+            if (id != null) {
+                queue.offer(id);
+            }
+        }
         T expected = startingNumber;
-        for (T id : sortedIds) {
-            int comparingNumber = compare.apply(id, expected);
-            if (comparingNumber < 0) {
-                continue;
-            }
-            if (comparingNumber > 0) {
+        while (!queue.isEmpty()) {
+            T current = queue.poll();
+            int comparison = comparator.compare(current, expected);
+            if (comparison > 0) {
                 return expected;
+            } else if (comparison == 0) {
+                expected = incrementer.apply(expected);
             }
-            expected = increment.apply(expected);
         }
         return expected;
     }
