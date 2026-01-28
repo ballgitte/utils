@@ -14,8 +14,8 @@ public final class IdUtils {
     /**
      * Gets the type of an ID in IDs like `example_type:1294949`, where `example_type` is the type.
      * The delimiter is `:`.
-     * @param id the ID to get the type of
-     * @return the type of the ID
+     * @param id the ID to get the type of.
+     * @return the type of the ID.
      */
     @PublicApi
     public static String getType(String id) {
@@ -29,10 +29,10 @@ public final class IdUtils {
     /**
      * Gets the numeric value of an ID in IDs like `example_type:1215129489668055070`, where `1215129489668055070` is the ID.
      * The delimiter is `:`.
-     * @param id the ID to get the numeric value of
-     * @param parser a function to parse the numeric part of the ID into a number
-     * @param <T> number type (Integer, Long, BigInteger, etc.)
-     * @return the numeric value of the ID
+     * @param id the ID to get the numeric value of.
+     * @param parser a function to parse the numeric part of the ID into a number.
+     * @param <T> number type (Integer, Long, BigInteger, etc.).
+     * @return the numeric value of the ID.
      */
     @PublicApi
     public static <T> T getId(String id, Function<String, T> parser) {
@@ -51,12 +51,12 @@ public final class IdUtils {
     /**
      * Gets the first available ID from a collection of numbers.
      *
-     * @param ids the collection of IDs
-     * @param startingNumber the starting number
-     * @param increment function to increment the next available ID
-     * @param compare function to compare two values
-     * @param <T> number type (Integer, Long, BigInteger, etc.)
-     * @return the first available ID, starting from {@code startingNumber}
+     * @param ids the collection of IDs.
+     * @param startingNumber the starting ID number. Most IDs start at 0 or 1.
+     * @param increment function to increment the next available ID.
+     * @param compare function to compare two values.
+     * @param <T> number type (Integer, Long, BigInteger, etc.).
+     * @return the first available ID, starting from {@code startingNumber}.
      */
     public static <T> T getFirstAvailableId(
             Collection<T> ids,

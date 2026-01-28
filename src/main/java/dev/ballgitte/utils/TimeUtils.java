@@ -24,14 +24,14 @@ public final class TimeUtils {
     /**
      * Converts a duration to a string representation from the specified unit.
      *
-     * @param duration the duration to convert
-     * @param unit the last unit to display
-     * @return the string representation of the duration
+     * @param duration the duration to convert.
+     * @param unit the last unit to display.
+     * @return the string representation of the duration.
      * <p><strong>Examples:</strong></p>
      * <pre>{@code getTimeFromUnit(Duration.ofHours(24 * 14), ChronoUnit.DAYS);}</pre>
-     * returns {@code 14d}
+     * returns {@code 14d}.
      * <pre>{@code getTimeFromUnit(Duration.ofHours(24 * 14), ChronoUnit.HOURS);}</pre>
-     * returns {@code 14d0h}
+     * returns {@code 14d0h}.
      * <pre>  &gt; When {@link ChronoUnit#HOURS} is used, the hour is included even if its value is {@code 0}.</pre>
      */
     @PublicApi

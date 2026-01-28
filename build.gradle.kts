@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.ballgitte"
-version = "1.3.1"
+version = "1.3.2"
 
 java {
     toolchain {
@@ -18,7 +18,7 @@ publishing {
             from(components["java"])
             groupId = "dev.ballgitte"
             artifactId = "utils"
-            version = "1.3.1"
+            version = "1.3.2"
         }
     }
     repositories {

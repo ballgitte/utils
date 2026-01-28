@@ -6,7 +6,7 @@
 
     <groupId>dev.ballgitte</groupId>
     <artifactId>utils</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
 
     <name>Utils</name>
     <description>Utils</description>
@@ -91,13 +91,6 @@
               <version>3.2.4</version>
                 <configuration>
                     <keyname>ADFF8D6BFBE7818967965B9CD8FA8F30AF953119</keyname>
-                    <gpgArguments>
-                      <arg>--batch</arg>
-                      <arg>--yes</arg>
-                      <arg>--pinentry-mode</arg>
-                      <arg>loopback</arg>
-                    </gpgArguments>
-                    <useAgent>true</useAgent>
                   </configuration>
               <executions>
                 <execution>

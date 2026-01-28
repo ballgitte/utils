@@ -7,13 +7,13 @@ package dev.ballgitte.utils;
 public @interface Range {
     /**
      * Minimum value of the range.
-     * @return the minimum value of the range
+     * @return the minimum value of the range.
      */
     int min();
 
     /**
      * Maximum value of the range.
-     * @return the maximum value of the range
+     * @return the maximum value of the range.
      */
     int max();
 }
