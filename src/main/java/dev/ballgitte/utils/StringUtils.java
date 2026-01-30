@@ -24,4 +24,20 @@ public final class StringUtils {
         }
         return count;
     }
+
+    /**
+     * Replaces the first occurrence of a target string with a replacement string.
+     * @param s the string to replace in.
+     * @param target the string to find and replace.
+     * @param replacement the string to replace with.
+     * @return the modified string with the first occurrence of the target replaced.
+     */
+    @PublicApi
+    public static String replaceFirst(String s, String target, String replacement) {
+        int i = s.indexOf(target);
+        if (i != -1) {
+            s = s.substring(0, i) + replacement + s.substring(i + target.length());
+        }
+        return s;
+    }
 }

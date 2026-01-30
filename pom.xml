@@ -6,7 +6,7 @@
 
     <groupId>dev.ballgitte</groupId>
     <artifactId>utils</artifactId>
-    <version>1.3.3</version>
+    <version>1.4.2</version>
 
     <name>Utils</name>
     <description>Utils</description>
@@ -23,7 +23,7 @@
       <developer>
         <id>ballgitte</id>
         <name>ballgitte</name>
-        <email>mail@ballgitte.dev</email>
+        <email>hi@ballgitte.dev</email>
         <url>https://ballgitte.dev</url>
       </developer>
     </developers>
@@ -48,9 +48,6 @@
               <artifactId>central-publishing-maven-plugin</artifactId>
               <version>0.9.0</version>
               <extensions>true</extensions>
-              <configuration>
-                <publishingServerId>central</publishingServerId>
-              </configuration>
             </plugin>
 
             <plugin>
