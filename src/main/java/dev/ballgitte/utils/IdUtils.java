@@ -12,13 +12,13 @@ public final class IdUtils {
     private IdUtils() {}
 
     /**
-     * Gets the type of an ID in IDs like `example_type:1294949`, where `example_type` is the type.
+     * Gets the label of an ID in IDs like `example_label:1294949`, where `example_label` is the label.
      * The delimiter is `:`.
-     * @param id the ID to get the type of.
-     * @return the type of the ID.
+     * @param id the ID to get the label of.
+     * @return the label of the ID.
      */
     @PublicApi
-    public static String getType(String id) {
+    public static String getLabel(String id) {
         int delimiter = id.indexOf(':');
         if (delimiter == -1) {
             throw new IllegalArgumentException("Invalid component ID (missing `:`): " + id);
@@ -27,7 +27,7 @@ public final class IdUtils {
     }
 
     /**
-     * Gets the numeric value of an ID in IDs like `example_type:1215129489668055070`, where `1215129489668055070` is the ID.
+     * Gets the numeric value of an ID in IDs like `example_label:1215129489668055070`, where `1215129489668055070` is the ID.
      * The delimiter is `:`.
      * @param id the ID to get the numeric value of.
      * @param parser a function to parse the numeric part of the ID into a number.

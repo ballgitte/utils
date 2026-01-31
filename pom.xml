@@ -6,7 +6,7 @@
 
     <groupId>dev.ballgitte</groupId>
     <artifactId>utils</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
 
     <name>Utils</name>
     <description>Utils</description>
@@ -87,7 +87,7 @@
               <artifactId>maven-gpg-plugin</artifactId>
               <version>3.2.4</version>
                 <configuration>
-                    <keyname>ADFF8D6BFBE7818967965B9CD8FA8F30AF953119</keyname>
+                    <keyname>C90DD38362E7B5A542A4BDD53319F7FA03CB07D9</keyname>
                   </configuration>
               <executions>
                 <execution>
