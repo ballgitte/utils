@@ -5,6 +5,7 @@ import java.text.BreakIterator;
 /**
  * Utility class for string-related operations.
  */
+@SuppressWarnings("unused")
 public final class StringUtils {
 
     private StringUtils() {}
@@ -14,7 +15,6 @@ public final class StringUtils {
      * @param s the string to count characters in.
      * @return the number of display characters in the string.
      */
-    @PublicApi
     public static int countDisplayChars(String s) {
         BreakIterator it = BreakIterator.getCharacterInstance();
         it.setText(s);
@@ -32,7 +32,6 @@ public final class StringUtils {
      * @param replacement the string to replace with.
      * @return the modified string with the first occurrence of the target replaced.
      */
-    @PublicApi
     public static String replaceFirst(String s, String target, String replacement) {
         int i = s.indexOf(target);
         if (i != -1) {

@@ -1,41 +1,34 @@
 package dev.ballgitte.utils;
 
+import java.math.BigInteger;
 import java.util.*;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
  * Utility class for ID-related operations.
  */
+@SuppressWarnings("unused")
 public final class IdUtils {
+    public static final int INVALID_ID = -1;
+    public static final long INVALID_ID_LONG = INVALID_ID;
+
+    public static final BigInteger INVALID_ID_BIG_INT = BigInteger.valueOf(INVALID_ID);
+
+    public static final int UNASSIGNED_ID = -1;
+    public static final long UNASSIGNED_ID_LONG = UNASSIGNED_ID;
+    public static final BigInteger UNASSIGNED_ID_BIG_INT = BigInteger.valueOf(UNASSIGNED_ID);
 
     private IdUtils() {}
 
     /**
-     * Gets the label of an ID in IDs like `example_label:1294949`, where `example_label` is the label.
+     * Gets the key of an ID in IDs like `1215129489668055070:example_value`, where `1215129489668055070` is the key.
      * The delimiter is `:`.
-     * @param id the ID to get the label of.
-     * @return the label of the ID.
-     */
-    @PublicApi
-    public static String getLabel(String id) {
-        int delimiter = id.indexOf(':');
-        if (delimiter == -1) {
-            throw new IllegalArgumentException("Invalid component ID (missing `:`): " + id);
-        }
-        return id.substring(0, delimiter);
-    }
-
-    /**
-     * Gets the numeric value of an ID in IDs like `example_label:1215129489668055070`, where `1215129489668055070` is the ID.
-     * The delimiter is `:`.
-     * @param id the ID to get the numeric value of.
+     * @param id the ID to get the key of.
      * @param parser a function to parse the numeric part of the ID into a number.
      * @param <T> number type (Integer, Long, BigInteger, etc.).
-     * @return the numeric value of the ID.
+     * @return the key of the ID.
      */
-    @PublicApi
-    public static <T> T getId(String id, Function<String, T> parser) {
+    public static <T> T getKey(String id, Function<String, T> parser) {
         int delimiter = id.indexOf(':');
         if (delimiter == -1 || delimiter == id.length() - 1) {
             throw new IllegalArgumentException("Invalid component ID: " + id);
@@ -49,6 +42,20 @@ public final class IdUtils {
     }
 
     /**
+     * Gets the value of an ID in IDs like `1294949:example_value`, where `example_value` is the value.
+     * The delimiter is `:`.
+     * @param id the ID to get the value of.
+     * @return the value of the ID.
+     */
+    public static String getValue(String id) {
+        int delimiter = id.indexOf(':');
+        if (delimiter == -1) {
+            throw new IllegalArgumentException("Invalid component ID (missing `:`): " + id);
+        }
+        return id.substring(0, delimiter);
+    }
+
+    /**
      * Gets the first available ID from a collection of numbers.
      *
      * @param ids the collection of IDs.
@@ -58,7 +65,6 @@ public final class IdUtils {
      * @param <T> number type (Integer, Long, BigInteger, etc.).
      * @return the first available ID, starting from {@code startingNumber}.
      */
-    @PublicApi
     public static <T> T getFirstAvailableId(
         Collection<T> ids,
         T startingNumber,

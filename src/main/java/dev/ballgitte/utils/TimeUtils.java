@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 /**
  * Utility class for time-related operations.
  */
+@SuppressWarnings("unused")
 public final class TimeUtils {
     private static final Object[][] units = {
             {ChronoUnit.YEARS, 365L * 24 * 3600 * 1_000_000_000L, "y"},
@@ -34,7 +35,6 @@ public final class TimeUtils {
      * returns {@code 14d0h}.
      * <pre>  &gt; When {@link ChronoUnit#HOURS} is used, the hour is included even if its value is {@code 0}.</pre>
      */
-    @PublicApi
     public static String getTimeFromUnit(Duration duration, ChronoUnit unit) {
         long remainingNanos = duration.toNanos();
         StringBuilder sb = new StringBuilder();

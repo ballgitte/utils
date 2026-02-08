@@ -6,7 +6,7 @@
 
     <groupId>dev.ballgitte</groupId>
     <artifactId>utils</artifactId>
-    <version>1.4.3</version>
+    <version>1.4.5</version>
 
     <name>Utils</name>
     <description>Utils</description>

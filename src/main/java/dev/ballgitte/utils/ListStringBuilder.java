@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * Utility class for building strings from lists of strings.
  */
+@SuppressWarnings("unused")
 public final class ListStringBuilder {
 
     private ListStringBuilder() {}
@@ -14,7 +15,6 @@ public final class ListStringBuilder {
      * @param listOfStrings the list of strings to build from.
      * @return the built string.
      */
-    @PublicApi
     public static String build(List<String> listOfStrings) {
         StringBuilder listStringBuilder = new StringBuilder();
         for (int i = 0; i < listOfStrings.size(); i++) {

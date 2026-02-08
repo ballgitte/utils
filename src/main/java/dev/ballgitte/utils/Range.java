@@ -3,7 +3,7 @@ package dev.ballgitte.utils;
 /**
  * Interface for marking the range of valid values.
  */
-@PublicApi
+@SuppressWarnings("unused")
 public @interface Range {
     /**
      * Minimum value of the range.
